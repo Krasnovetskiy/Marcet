@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from products.uris import urlpatterns as products_urlpatterns
+from orders.uris import urlpatterns as orders_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('products/', include(products_urlpatterns))
+    path('products/', include(products_urlpatterns)),
+    path('orders/', include(orders_urlpatterns))
+
 ]
