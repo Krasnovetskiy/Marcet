@@ -1,8 +1,14 @@
 from django.contrib import admin
 
-from products.models import Product
+from products.models import Product, Category
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'price')
+    filter_horizontal = ('categories', 'products')
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    ...

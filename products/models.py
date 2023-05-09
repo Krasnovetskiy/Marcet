@@ -23,6 +23,9 @@ class Category(PKMixin):
         blank=True
     )
 
+    def __str__(self):
+        return self.name
+
 
 class Product(PKMixin):
     name = models.CharField(max_length=255)
@@ -38,13 +41,15 @@ class Product(PKMixin):
     sku = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     categories = models.ManyToManyField(Category, blank=True)
-    products = models.ManyToManyField('products.Product', blank=True)
+    products = models.ManyToManyField("products.Product", blank=True)
     price = models.DecimalField(
         validators=[MinValueValidator(0)],
         max_digits=MAX_DIGITS,
         decimal_places=DECIMAL_PLACES
     )
 
+    def __str__(self):
+        return f"{self.name} - {self.price}"
 
 # class Discount(PKMixin):
 #    amount = models.PositiveIntegerField(max_length=255)
